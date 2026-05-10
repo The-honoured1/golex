@@ -2,8 +2,8 @@ package tokenize
 
 import "strings"
 
-type BasicTokenizer struct{}
+type Basic struct{}
 
-func (t BasicTokenizer) Process(input string) (string, error) {
+func (t Basic) Process(input string) (string, error) {
 	return strings.Join(strings.Fields(input), " "), nil
 }
