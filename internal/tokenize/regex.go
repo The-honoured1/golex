@@ -1,10 +1,14 @@
 package tokenize
 
-import "regexp"
+import (
+	"regexp"
+	"strings"
+)
 
-type RegexTokenizer struct{}
+type Regex struct{}
 
-func (t RegexTokenizer) Process(input string) (string, error) {
-	re := regexp.MustCompile(`[^a-zA-Z0-9 ]+`)
-	return re.ReplaceAllString(input, ""), nil
+func (t Regex) Tokenize(text string) []string {
+	re := regexp.MustCompile(`[^a-zA-Z0-9]+`)
+	clean := re.ReplaceAllString(text, " ")
+	return strings.Fields(clean)
 }
