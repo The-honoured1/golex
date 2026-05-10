@@ -5,16 +5,16 @@ import (
 	"strings"
 )
 
-type StreamProcessor struct {
+type Stream struct {
 	ChunkSize int
 }
 
-func (s StreamProcessor) Process(input string) ([]string, error) {
+func (s Stream) Chunk(input string) []string {
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	scanner.Split(bufio.ScanWords)
 
-	chunks := []string{}
-	buffer := []string{}
+	var chunks []string
+	var buffer []string
 
 	for scanner.Scan() {
 		buffer = append(buffer, scanner.Text())
@@ -29,5 +29,5 @@ func (s StreamProcessor) Process(input string) ([]string, error) {
 		chunks = append(chunks, strings.Join(buffer, " "))
 	}
 
-	return chunks, nil
+	return chunks
 }

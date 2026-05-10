@@ -1,18 +1,16 @@
 package pipeline
 
-type Processor interface {
-	Process(string) (string, error)
-}
+import "github.com/The-honoured1/golex/internal/core"
 
 type Pipeline struct {
-	steps []Processor
+	steps []core.Processor
 }
 
-func NewPipeline(steps ...Processor) *Pipeline {
+func New(steps ...core.Processor) *Pipeline {
 	return &Pipeline{steps: steps}
 }
 
-func (p *Pipeline) Run(input string) (string, error) {
+func (p *Pipeline) Execute(input string) (string, error) {
 	var err error
 	out := input
 
@@ -22,5 +20,6 @@ func (p *Pipeline) Run(input string) (string, error) {
 			return "", err
 		}
 	}
+
 	return out, nil
 }

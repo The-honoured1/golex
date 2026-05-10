@@ -2,10 +2,8 @@ package core
 
 import "strings"
 
-type Normalize struct{}
+type Normalizer struct{}
 
-func (n Normalize) Process(input string) (string, error) {
-	input = strings.ToLower(input)
-	input = strings.TrimSpace(input)
-	return input, nil
+func (n Normalizer) Process(input string) (string, error) {
+	return strings.ToLower(strings.TrimSpace(input)), nil
 }
